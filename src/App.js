@@ -9,42 +9,30 @@ import calendar from "./calendar.svg";
 import shape from "./shape.svg";
 import Rectangle from "./Rectangle-169.svg";
 
-import kompass from "./kompass.svg";
-import Planet from "./planet.svg";
-import Palm from "./palm.svg";
-import Basket from "./basket.svg";
-import Theater from "./theater.svg";
-import Glass from "./glass.svg";
-import Buggy from "./buggy.svg";
-
 function Main() {
   return (
     <div>
       <SearchPart>
         <div className="container">
-          <MainScreen>
-            <Logo>
-              <img src={logo} alt="logo" />
-            </Logo>
-            <AviaSales>aviasales</AviaSales>
-            <MainTitle>
-              <HeaderTitle>Поиск дешевых авиабилетов</HeaderTitle>
-              <HeaderTitleFrom>
-                Лучший способ купить авиабилеты дешево
-              </HeaderTitleFrom>
-            </MainTitle>
-          </MainScreen>
-
-          <div className="row center-xl ">
+          <div className="row center-xl">
+            <MainScreen>
+              <Logo>
+                <AviaLogo src={logo} alt="logo" />
+              </Logo>
+              <AviaSales>aviasales</AviaSales>
+              <Currency> RUB </Currency>
+            </MainScreen>
             <SearchForm>
               <Cities>
                 <FirstTown>
                   <Moscow placeholder="Moscow" />
+                  <CurrencySpanFirst>KUF</CurrencySpanFirst>
                   <Arrow src={arrow} alt="Arrow" />
                 </FirstTown>
 
                 <SecondTown>
                   <SitiOfArrival placeholder="Город прибытия" />
+                  <CurrencySpanSecond>KUF</CurrencySpanSecond>
                 </SecondTown>
               </Cities>
               <Calendars>
@@ -58,48 +46,53 @@ function Main() {
                   <CalendarImgBack src={calendar} alt="calendar" />
                 </CalendarBack>
               </Calendars>
-              <TypeOfTickets>
-                <TicketSelection placeholder="1 пассажир, эконом" />
-                <Shape src={shape} alt="shape" />
-              </TypeOfTickets>
+              <TicketAndButton>
+                <TypeOfTickets>
+                  <TicketSelection placeholder="1 пассажир, эконом" />
+                  <Shape src={shape} alt="shape" />
+                </TypeOfTickets>
+                <SearchButton>
+                  <FindTickets>Найти билеты</FindTickets>
+                </SearchButton>
+              </TicketAndButton>
             </SearchForm>
-          </div>
-
-          <div className="row center-xl">
-            <div className="col-xl-3">
-              <SearchButton>
-                <FindTickets>Найти билеты</FindTickets>
-                <PlaneImg src={Rectangle} alt="Rectangle" />
-              </SearchButton>
-            </div>
           </div>
         </div>
       </SearchPart>
-
-      {/* _____________________ PART 2________________ */}
-
-      <DirectionsOfFlights>
+      {/* <TicketsPart>
         <div className="container">
-          <KompassLogoContainer>
-            <KompassLogo src={kompass} alt="kompass" />
-          </KompassLogoContainer>
-          <DirectionsTitle>
-            Популярные направления перелетов <br /> из города
-            <TitleSityLink href="#"> Москва </TitleSityLink>
-          </DirectionsTitle>
+          <div className="row">
+            <div className="col-xl-3">
+              <Filter />
+            </div>
+            <div className="col-xl-7">
+              <Tickets />
+            </div>
+          </div>
         </div>
-      </DirectionsOfFlights>
+      </TicketsPart> */}
     </div>
   );
 }
 
-// (CONSTS)_____________________________________PART 2
+//(FUNCTIONS)_____________________TICKETS PART
+
+// function Tickets(props) {
+//   const Ticket = TicketContent.map(TicketСomposition => (
+//     <TicketBuyCol>
+//       <BagsInfo>#</BagsInfo>
+//       <BuyButton>#<BuyButton>
+//       <Company>{TicketСomposition.CompanyName}</Company>
+
+//     <TicketBuyCol>
+//  ));
+//  return <TicketContainer>{Ticket}</TicketContainer>
+
+// }
 
 //(STYLED)__________________SEARCH PART
 
 const SearchPart = styled.div`
-  width: 100vw;
-  height: 100vh;
   background: linear-gradient(
     to bottom right,
     #00b0de 0%,
@@ -111,57 +104,51 @@ const SearchPart = styled.div`
   );
 `;
 
-const MainScreen = styled.div``;
+const MainScreen = styled.div`
+  padding-bottom: 33px;
+  width: 100%;
+`;
 
 const Logo = styled.div`
-  padding-top: 12px;
+  padding-top: 10px;
+`;
+
+const AviaLogo = styled.img`
   float: left;
+  padding-top: 2px;
 `;
 
 const AviaSales = styled.p`
-  padding: 14px 0px 0px 12px;
-  display: block;
+  padding: 4px 0px 0px 12px;
   font-family: Roboto;
   font-weight: Regular;
   font-size: 20px;
   line-height: 25px;
-  margin-top: 0px;
+  margin: 0px;
   color: #fff;
   float: left;
 `;
 
-const MainTitle = styled.div`
-  padding: 213px 0px 0px 0px;
-  text-align: center;
+const Currency = styled.div`
   color: #fff;
+  float: right;
+  padding: 8px 20px 9px 20px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
 `;
 
-const HeaderTitle = styled.h1`
-  padding-bottom: 8px;
-  font-family: Roboto;
-  font-weight: Bold;
-  font-size: 40px;
-  line-height: 48px;
-  margin: 0px;
-`;
-
-const HeaderTitleFrom = styled.p`
-  font-size: 24px;
-  line-height: 28px;
-  margin: 0px 0px 40px 0px;
-  font-family: Roboto;
-  font-weight: Bold;
-`;
 //_________________________________________________________________SEARCH
 
 const SearchForm = styled.div`
   display: flex;
   flex-wrap: nowrap;
   box-sizing: border-box;
+  padding-bottom: 32px;
+
+  margin: auto;
 `;
 
 const Cities = styled.div`
-  width: 452px;
   display: flex;
 `;
 
@@ -169,7 +156,7 @@ const FirstTown = styled.div`
   position: relative;
   margin: 0px 1px;
   display: flex;
-  padding: 0px 0px 0px 0px;
+  padding: 0px;
   width: 50%;
 `;
 const Moscow = styled.input`
@@ -179,10 +166,18 @@ const Moscow = styled.input`
   width: 100%;
 `;
 
+const CurrencySpanFirst = styled.span`
+  position: absolute;
+  z-index: 2;
+  right: 43px;
+  top: 21px;
+  color: #a0b0b9;
+`;
+
 const Arrow = styled.img`
   position: absolute;
   z-index: 2;
-  top: 19px;
+  top: 21px;
   right: 16px;
 `;
 
@@ -206,7 +201,9 @@ const SecondTown = styled.div`
   display: flex;
   margin: 0px 1px;
   box-sizing: border-box;
+  position: relative;
 `;
+
 const SitiOfArrival = styled.input`
   font-family: Roboto;
   font-weight: Regular;
@@ -214,6 +211,14 @@ const SitiOfArrival = styled.input`
   border-color: transparent;
   padding: 18px 0px 18px 16px;
   width: 100%;
+`;
+
+const CurrencySpanSecond = styled.span`
+  position: absolute;
+  z-index: 2;
+  right: 16px;
+  top: 19px;
+  color: #a0b0b9;
 `;
 
 const Calendars = styled.div`
@@ -251,19 +256,25 @@ const Back = styled.input`
   border-color: transparent;
   width: 100%;
 `;
+
+const TicketAndButton = styled.div`
+  display: flex;
+`;
+
 const TypeOfTickets = styled.div`
   position: relative;
   border: 0px solid #fff;
   display: flex;
   margin: 0px 1px;
   box-sizing: border-box;
+  width: 60%;
 `;
 
 const TicketSelection = styled.input`
   border-radius: 0px 2px 2px 0px;
   font-family: Roboto;
   font-weight: Regular;
-  padding: 18px 10px 18px 16px;
+  padding: 18px 0px 18px 16px;
   border-color: transparent;
   width: 95%;
 `;
@@ -275,56 +286,30 @@ const Shape = styled.img`
 `;
 
 const SearchButton = styled.div`
-  margin: 48px 0px 0px 0px;
+  margin: 0px 0px 0px 15px;
   background-color: #ff9241;
   position: relative;
   z-index: 1;
   display: block;
   border-radius: 3px;
   border: 0px solid #fff;
-  width: 100%;
-  padding-right: 28px;
-  right: 14px;
+  width: 40%;
+  padding: 17px 29px 17px 29px;
 `;
 const FindTickets = styled.p`
   margin: 0px;
-  padding: 15px 0px 16px 0px;
   font-family: Roboto;
   font-weight: Bold;
-  font-size: 28px;
-  line-height: 33px;
+  font-size: 20px;
+  line-height: 23px;
   color: #fff;
 `;
-const PlaneImg = styled.img`
-  position: absolute;
-  z-index: 2;
-  top: 20px;
-  right: 20px;
-`;
-// (STYLED)______________________SECOND PART
+//_____________________________________TICKETS PART
 
-const DirectionsOfFlights = styled.div`
-  height: 900px;
-  ${"" /* DELETE HEIGHT_________________________ */};
-`;
-
-const KompassLogoContainer = styled.div`
-  text-align: center;
-  padding: 56px 0px 20px 0px;
-`;
-
-const KompassLogo = styled.img``;
-
-const DirectionsTitle = styled.h2`
-  text-align: center;
-  font-size: 24px;
-  line-height: 36px;
-  margin: 0px;
-`;
-const TitleSityLink = styled.a`
-  color: #00ace2;
-  text-decoration: none;
-  font-weight: 500;
+const TicketsPart = styled.div`
+  background-color: #eaeaea;
+  height: 1400px;
+  ${"" /* ; DELET AFTER!!!!!!!!________________________ */};
 `;
 
 export default Main;
