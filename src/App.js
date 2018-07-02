@@ -1,17 +1,28 @@
 import React, { Component } from "react";
 import "./App.css";
 import styled, { css } from "styled-components";
+import { Range } from "rc-slider";
+// We can just import Slider or Range to reduce bundle size
+// import Slider from 'rc-slider/lib/Slider';
+// import Range from 'rc-slider/lib/Range';
+import "rc-slider/assets/index.css";
+import "./Range.css";
 
 import logo from "./logo.svg";
 
 import arrow from "./Arrow.svg";
 import calendar from "./calendar.svg";
 import shape from "./shape.svg";
+import ShapeDown from "./ShapeDown.svg";
 import Rectangle from "./Rectangle-169.svg";
+import BlackPlane from "./BlackPlane.svg";
 
 import ImgBag1 from "./ImgBag1.svg";
 import ImgBag2 from "./ImgBag2.svg";
+import ImgBag2Red from "./ImgBag2Red.svg";
 import ImgCross from "./ImgCross.svg";
+import CircleCross from "./CircleCross.svg";
+import ImgCrossRed from "./ImgCrossRed.svg";
 
 import ImgTakeoff from "./ImgTakeoff.svg";
 import ImgLanding from "./ImgLanding.svg";
@@ -82,10 +93,13 @@ function Main() {
       <TicketsPart>
         <div className="container">
           <div className="row">
-            <div className="col-xl-3">{/* <Filter /> */}</div>
+            <div className="col-xl-3">
+              <Filters />
+            </div>
             <div className="col-xl-7">
               <TicketsBox>
                 <Tickets />
+
                 <ButtonAllTickets>ПОКАЗАТЬ ЕЩЕ 10 БИЛЕТОВ!</ButtonAllTickets>
               </TicketsBox>
             </div>
@@ -93,6 +107,420 @@ function Main() {
         </div>
       </TicketsPart>
     </div>
+  );
+}
+
+//(FUNCTIONS)_____________________Filter PART
+
+function Filters(props) {
+  return (
+    <FilterBox>
+      <BlockWithCheckBox>
+        <FilterTitleBox>
+          <FilterTitle>
+            <ShapeFilter src={ShapeDown} />
+            ПЕРЕСАДКИ
+          </FilterTitle>
+          <DeleteFilter>
+            <CrossFilter src={CircleCross} />
+          </DeleteFilter>
+        </FilterTitleBox>
+        <Checkboxes>
+          <CheckboxContainer>
+            <LabelContent type="checkbox" value="None" name="check" id="check1">
+              <InputCheck type="checkbox" id="check1" />
+              <CheckContent>Все</CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent type="checkbox" value="None" name="check" id="check2">
+              <InputCheck checked type="checkbox" id="check2" />
+              <CheckContent>
+                Без пересадок
+                <CheckPrice> 7 712 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent type="checkbox" value="None" name="check" id="check3">
+              <InputCheck type="checkbox" id="check3" />
+              <CheckContent>
+                1 пересадка
+                <CheckPrice> 11 150 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent type="checkbox" value="None" name="check" id="check4">
+              <InputCheck type="checkbox" id="check4" />
+              <CheckContent>
+                2 пересадки
+                <CheckPrice> 16 821 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent type="checkbox" value="None" name="check" id="check5">
+              <InputCheck type="checkbox" id="check5" />
+              <CheckContent>
+                3 пересадки
+                <CheckPrice> 23 986 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+        </Checkboxes>
+      </BlockWithCheckBox>
+      <BlockWithSwipe>
+        <FilterTitleBox>
+          <FilterTitle>
+            <ShapeFilter src={ShapeDown} />
+            ВРЕМЯ ВЫЛЕТА И ПРИБЫТИЯ
+          </FilterTitle>
+        </FilterTitleBox>
+
+        <NameOfFlights>
+          Москва
+          <BlackPlaneBoxImg src={BlackPlane} />
+          Барселона
+        </NameOfFlights>
+        <SliderBox>
+          <DepartureArrival>Вылет из Москвы:</DepartureArrival>
+          <TimeBox>
+            <TimeStart>c 00:05, 24 фев</TimeStart>
+            <TimeFinish>до 23:45, 24 фев</TimeFinish>
+          </TimeBox>
+          <Range />
+          <DepartureArrival>Прибытие в Барселону:</DepartureArrival>
+          <TimeBox>
+            <TimeStart>c 03:05, 24 фев</TimeStart>
+            <TimeFinish>до 13:50, 26 фев</TimeFinish>
+          </TimeBox>
+          <Range />
+        </SliderBox>
+        <NameOfFlights>
+          Барселона
+          <BlackPlaneBoxImg src={BlackPlane} />
+          Москва
+        </NameOfFlights>
+        <SliderBox>
+          <DepartureArrival>Вылет из Барселоны:</DepartureArrival>
+          <TimeBox>
+            <TimeStart>c 06:00, 3 мар</TimeStart>
+            <TimeFinish>до 23:45, 3 мар</TimeFinish>
+          </TimeBox>
+          <Range />
+          <DepartureArrival>Прибытие в Москву:</DepartureArrival>
+          <TimeBox>
+            <TimeStart>c 15:00, 3 мар</TimeStart>
+            <TimeFinish>до 09:55, 5 мар</TimeFinish>
+          </TimeBox>
+          <Range />
+        </SliderBox>
+      </BlockWithSwipe>
+      <EmptyBlock>
+        <FilterTitleBox>
+          <FilterTitle>
+            <ShapeFilter src={ShapeDown} />
+            Багаж
+          </FilterTitle>
+        </FilterTitleBox>
+      </EmptyBlock>
+      <EmptyBlock>
+        <FilterTitleBox>
+          <FilterTitle>
+            <ShapeFilter src={ShapeDown} />
+            Длительность пересадки
+          </FilterTitle>
+        </FilterTitleBox>
+      </EmptyBlock>
+      <BlockWithSwipe>
+        <FilterTitleBox>
+          <FilterTitle>
+            <ShapeFilter src={ShapeDown} />
+            Время в пути
+          </FilterTitle>
+        </FilterTitleBox>
+        <NameOfFlights>
+          Москва
+          <BlackPlaneBoxImg src={BlackPlane} />
+          Барселона
+        </NameOfFlights>
+        <SliderBox>
+          <TimeBox>
+            <TimeStart>от 04ч 20м</TimeStart>
+            <TimeFinish>до 48ч 50м</TimeFinish>
+          </TimeBox>
+          <Range />
+        </SliderBox>
+        <NameOfFlights>
+          Барселона
+          <BlackPlaneBoxImg src={BlackPlane} />
+          Москва
+        </NameOfFlights>
+        <SliderBox>
+          <TimeBox>
+            <TimeStart>от 04ч 10м</TimeStart>
+            <TimeFinish>до 41ч 20м</TimeFinish>
+          </TimeBox>
+          <Range />
+        </SliderBox>
+      </BlockWithSwipe>
+      <BlockWithCheckBox>
+        <FilterTitleBox>
+          <FilterTitle>
+            <ShapeFilter src={ShapeDown} />
+            Авиакомпании
+            <FilterQuantity>43</FilterQuantity>
+          </FilterTitle>
+        </FilterTitleBox>
+        <Checkboxes>
+          <CheckboxContainer>
+            <LabelContent type="checkbox" value="None" name="check" id="check1">
+              <InputCheck type="checkbox" id="check1" />
+              <CheckContent>Несколько авиакомпаний</CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxInfo>
+            Показывать билеты с перелетами, выполняемыми несколькими
+            авиакомпаниями, включая выбранную
+          </CheckboxInfo>
+          <CheckboxCategory>Альянсы</CheckboxCategory>
+          <CheckboxContainer>
+            <LabelContent type="checkbox" value="None" name="check" id="check2">
+              <InputCheck checked type="checkbox" id="check2" />
+              <CheckContent>Все</CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent type="checkbox" value="None" name="check" id="check3">
+              <InputCheck checked type="checkbox" id="check3" />
+              <CheckContent>
+                Star Alliance
+                <CheckPrice> 11 150 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent type="checkbox" value="None" name="check" id="check4">
+              <InputCheck checked type="checkbox" id="check4" />
+              <CheckContent>
+                OneWorld
+                <CheckPrice> 12 370 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent type="checkbox" value="None" name="check" id="check5">
+              <InputCheck checked type="checkbox" id="check5" />
+              <CheckContent>
+                SkyTeam
+                <CheckPrice> 16 290 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxCategory>Авиакомпании</CheckboxCategory>
+          <CheckboxContainer>
+            <LabelContent type="checkbox" value="None" name="check" id="check6">
+              <InputCheck checked type="checkbox" id="check6" />
+              <CheckContent>Все</CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent type="checkbox" value="None" name="check" id="check7">
+              <InputCheck checked type="checkbox" id="check7" />
+              <CheckContent>
+                Aegean Airlines
+                <CheckPrice> 20 357 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent type="checkbox" value="None" name="check" id="check8">
+              <InputCheck checked type="checkbox" id="check8" />
+              <CheckContent>
+                Air Algerie
+                <CheckPrice> 29 105 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent type="checkbox" value="None" name="check" id="check9">
+              <InputCheck checked type="checkbox" id="check9" />
+              <CheckContent>
+                Air Europa
+                <CheckPrice> 22 202 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent
+              type="checkbox"
+              value="None"
+              name="check"
+              id="check10"
+            >
+              <InputCheck checked type="checkbox" id="check10" />
+              <CheckContent>
+                Air France
+                <CheckPrice> 17 050 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent
+              type="checkbox"
+              value="None"
+              name="check"
+              id="check11"
+            >
+              <InputCheck checked type="checkbox" id="check11" />
+              <CheckContent>
+                Air Moldova
+                <CheckPrice> 22 613 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent
+              type="checkbox"
+              value="None"
+              name="check"
+              id="check12"
+            >
+              <InputCheck checked type="checkbox" id="check12" />
+              <CheckContent>
+                Alitalia
+                <CheckPrice> 22 717 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent
+              type="checkbox"
+              value="None"
+              name="check"
+              id="check13"
+            >
+              <InputCheck checked type="checkbox" id="check13" />
+              <CheckContent>
+                Alitalia CityLiner
+                <CheckPrice> 20 271 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent
+              type="checkbox"
+              value="None"
+              name="check"
+              id="check14"
+            >
+              <InputCheck checked type="checkbox" id="check14" />
+              <CheckContent>
+                Belle Air
+                <CheckPrice> 18 371 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent
+              type="checkbox"
+              value="None"
+              name="check"
+              id="check15"
+            >
+              <InputCheck checked type="checkbox" id="check15" />
+              <CheckContent>
+                British Airways
+                <CheckPrice> 23 839 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent
+              type="checkbox"
+              value="None"
+              name="check"
+              id="check16"
+            >
+              <InputCheck checked type="checkbox" id="check16" />
+              <CheckContent>
+                Brussels Airlines
+                <CheckPrice> 11 150 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+          <CheckboxContainer>
+            <LabelContent
+              type="checkbox"
+              value="None"
+              name="check"
+              id="check17"
+            >
+              <InputCheck checked type="checkbox" id="check17" />
+              <CheckContent>
+                Bulgaria Air
+                <CheckPrice> 20 114 ₽</CheckPrice>
+              </CheckContent>
+              <CheckSpan />
+            </LabelContent>
+          </CheckboxContainer>
+        </Checkboxes>
+      </BlockWithCheckBox>
+      <EmptyBlock>
+        <FilterTitleBox>
+          <FilterTitle>
+            <ShapeFilter src={ShapeDown} />
+            аэропорты
+          </FilterTitle>
+        </FilterTitleBox>
+      </EmptyBlock>
+      <EmptyBlock>
+        <FilterTitleBox>
+          <FilterTitle>
+            <ShapeFilter src={ShapeDown} />
+            аэропорт пересадки
+            <FilterQuantity>71</FilterQuantity>
+          </FilterTitle>
+        </FilterTitleBox>
+      </EmptyBlock>
+      <EmptyBlock>
+        <FilterTitleBox>
+          <FilterTitle>
+            <ShapeFilter src={ShapeDown} />
+            агенства
+            <FilterQuantity>26</FilterQuantity>
+          </FilterTitle>
+        </FilterTitleBox>
+      </EmptyBlock>
+      <ResetBlock>
+        <ResetTitle>СБРОСИТЬ ВСЕ ФИЛЬТРЫ</ResetTitle>
+        <DeleteFilter>
+          <CrossFilter src={CircleCross} />
+        </DeleteFilter>
+      </ResetBlock>
+    </FilterBox>
   );
 }
 
@@ -109,11 +537,12 @@ function Tickets(props) {
               <BagWeightBig1>{TicketСomposition.Weight1}</BagWeightBig1>
             </BagBoxBig1>
             <BagBoxBig2>
-              <BagImg2 src={ImgBag2} />
+              <BagImg2Big noBag={TicketСomposition.noBag} src={ImgBag2} />
+              <BagImg2Red noBag={TicketСomposition.noBag} src={ImgBag2Red} />
               <BagWeightBig2 noBag={TicketСomposition.noBag}>
                 {TicketСomposition.Weight2}
               </BagWeightBig2>
-              <Cross noBag={TicketСomposition.noBag} src={ImgCross} />
+              <CrossRed noBag={TicketСomposition.noBag} src={ImgCrossRed} />
             </BagBoxBig2>
             <BagText1> {TicketСomposition.BagTextInfo1}</BagText1>
           </BigBag>
@@ -151,7 +580,9 @@ function Tickets(props) {
               <BagText2> {TicketСomposition.BagTextInfo2}</BagText2>
             </SecondBag>
           </BagBoxMin>
+          <LeftTickets>{TicketСomposition.TicketLeft}</LeftTickets>
         </BagsInfo>
+
         <BuyButton>
           <Buy>
             Купить <br />
@@ -282,6 +713,7 @@ const TicketContent = [
     BagTextInfo1: null,
     BagTextInfo2: null,
     PriceButtonInfo: "7 712",
+    TicketLeft: null,
     CompanyName: "на Clickavia",
     Offer1: null,
     OfferPrice1: null,
@@ -292,7 +724,7 @@ const TicketContent = [
     TimeInfo1: "00:05",
     CityInfo1: "Москва",
     DateInfo1: "24 фев 2018, Сб",
-    FlightTimeInfo1: "Всего: 5ч",
+    FlightTimeInfo1: "5ч",
     CurrencyThereInfo1: "VKO",
     CurrencyBackInfo1: "BCN",
     CurrencyThereInfo2: "BCN",
@@ -303,7 +735,7 @@ const TicketContent = [
     TimeInfo3: "10:35",
     CityInfo3: "Барселона",
     DateInfo3: "3 мар 2018, Сб",
-    FlightTimeInfo2: "Всего: 4ч 35 м",
+    FlightTimeInfo2: " 4ч 35 м",
     TimeInfo4: "17:10",
     CityInfo4: "Москва",
     DateInfo4: "3 мар 2018, Сб",
@@ -323,6 +755,7 @@ const TicketContent = [
     BagTextInfo1: null,
     BagTextInfo2: null,
     PriceButtonInfo: "8 029",
+    TicketLeft: null,
     CompanyName: "на Билетик Аэро",
     Offer1: null,
     OfferPrice1: null,
@@ -333,7 +766,7 @@ const TicketContent = [
     TimeInfo1: "00:15",
     CityInfo1: "Москва",
     DateInfo1: "24 фев 2018, Сб",
-    FlightTimeInfo1: "Всего: Всего: 4ч 55м",
+    FlightTimeInfo1: " 4ч 55м",
     CurrencyThereInfo1: "VKO",
     CurrencyBackInfo1: "BCN",
     CurrencyThereInfo2: "BCN",
@@ -344,7 +777,7 @@ const TicketContent = [
     TimeInfo3: "10:45",
     CityInfo3: "Барселона",
     DateInfo3: "3 мар 2018, Сб",
-    FlightTimeInfo2: "Всего: 4ч 30 м",
+    FlightTimeInfo2: "4ч 30 м",
     TimeInfo4: "17:15",
     CityInfo4: "Москва",
     DateInfo4: "3 мар 2018, Сб",
@@ -364,6 +797,7 @@ const TicketContent = [
     BagTextInfo1: "Нет богажа",
     BagTextInfo2: "- 136 ₽",
     PriceButtonInfo: "8 164",
+    TicketLeft: null,
     CompanyName: "на Aviakassa",
     Offer1: null,
     OfferPrice1: null,
@@ -374,7 +808,7 @@ const TicketContent = [
     TimeInfo1: "00:15",
     CityInfo1: "Москва",
     DateInfo1: "24 фев 2018, Сб",
-    FlightTimeInfo1: "Всего: Всего: 4ч 55м",
+    FlightTimeInfo1: " 4ч 55м",
     CurrencyThereInfo1: "VKO",
     CurrencyBackInfo1: "BCN",
     CurrencyThereInfo2: "BCN",
@@ -385,7 +819,7 @@ const TicketContent = [
     TimeInfo3: "10:45",
     CityInfo3: "Барселона",
     DateInfo3: "3 мар 2018, Сб",
-    FlightTimeInfo2: "Всего: 4ч 30 м",
+    FlightTimeInfo2: " 4ч 30 м",
     TimeInfo4: "17:15",
     CityInfo4: "Москва",
     DateInfo4: "3 мар 2018, Сб",
@@ -406,6 +840,7 @@ const TicketContent = [
     BagTextInfo2: "- 267 ₽",
     PriceButtonInfo: "8 240",
     CompanyName: "на Билетик Аэро",
+    TicketLeft: null,
     Offer1: "Clickavia",
     OfferPrice1: "8 302 ₽",
     Offer2: "Aviakassa",
@@ -417,7 +852,7 @@ const TicketContent = [
     TimeInfo1: "07:00",
     CityInfo1: "Москва",
     DateInfo1: "24 фев 2018, Сб",
-    FlightTimeInfo1: "Всего: 4ч 30м",
+    FlightTimeInfo1: "4ч 30м",
     CurrencyThereInfo1: "VKO",
     CurrencyBackInfo1: "BCN",
     CurrencyThereInfo2: "BCN",
@@ -428,7 +863,7 @@ const TicketContent = [
     TimeInfo3: "11:00",
     CityInfo3: "Барселона",
     DateInfo3: "3 мар 2018, Сб",
-    FlightTimeInfo2: "Всего: 4ч 10 м",
+    FlightTimeInfo2: " 4ч 10 м",
     TimeInfo4: "17:10",
     CityInfo4: "Москва",
     DateInfo4: "3 мар 2018, Сб",
@@ -448,6 +883,7 @@ const TicketContent = [
     BagTextInfo1: null,
     BagTextInfo2: null,
     PriceButtonInfo: "9 108",
+    TicketLeft: null,
     CompanyName: "на Clickavia",
     Offer1: null,
     OfferPrice1: null,
@@ -460,7 +896,7 @@ const TicketContent = [
     TimeInfo1: "00:05",
     CityInfo1: "Москва",
     DateInfo1: "24 фев 2018, Сб",
-    FlightTimeInfo1: "Всего: 5ч",
+    FlightTimeInfo1: " 5ч",
     CurrencyThereInfo1: "VKO",
     CurrencyBackInfo1: "BCN",
     CurrencyThereInfo2: "BCN",
@@ -471,7 +907,7 @@ const TicketContent = [
     TimeInfo3: "11:00",
     CityInfo3: "Барселона",
     DateInfo3: "3 мар 2018, Сб",
-    FlightTimeInfo2: "Всего: 4ч 10 м",
+    FlightTimeInfo2: " 4ч 10 м",
     TimeInfo4: "17:10",
     CityInfo4: "Москва",
     DateInfo4: "3 мар 2018, Сб",
@@ -491,6 +927,7 @@ const TicketContent = [
     BagTextInfo1: null,
     BagTextInfo2: null,
     PriceButtonInfo: "9 269",
+    TicketLeft: "Осталось 4 билета",
     CompanyName: "на Biletix",
     Offer1: "Svyaznoy Travel",
     OfferPrice1: "9 275 ₽",
@@ -503,7 +940,7 @@ const TicketContent = [
     TimeInfo1: "07:30",
     CityInfo1: "Москва",
     DateInfo1: "24 фев 2018, Сб",
-    FlightTimeInfo1: "Всего: 4ч 20м",
+    FlightTimeInfo1: "4ч 20м",
     CurrencyThereInfo1: "VKO",
     CurrencyBackInfo1: "BCN",
     CurrencyThereInfo2: "BCN",
@@ -514,7 +951,7 @@ const TicketContent = [
     TimeInfo3: "11:20",
     CityInfo3: "Барселона",
     DateInfo3: "3 мар 2018, Сб",
-    FlightTimeInfo2: "Всего: 4ч 15 м",
+    FlightTimeInfo2: "4ч 15 м",
     TimeInfo4: "17:35",
     CityInfo4: "Москва",
     DateInfo4: "3 мар 2018, Сб",
@@ -534,6 +971,7 @@ const TicketContent = [
     BagTextInfo1: null,
     BagTextInfo2: null,
     PriceButtonInfo: "9 485 ",
+    TicketLeft: null,
     CompanyName: "на Clickavia",
     Offer1: null,
     OfferPrice1: null,
@@ -546,7 +984,7 @@ const TicketContent = [
     TimeInfo1: "00:05",
     CityInfo1: "Москва",
     DateInfo1: "24 фев 2018, Сб",
-    FlightTimeInfo1: "Всего: 5ч",
+    FlightTimeInfo1: " 5ч",
     CurrencyThereInfo1: "VKO",
     CurrencyBackInfo1: "BCN",
     CurrencyThereInfo2: "BCN",
@@ -557,7 +995,7 @@ const TicketContent = [
     TimeInfo3: "10:20",
     CityInfo3: "Барселона",
     DateInfo3: "3 мар 2018, Сб",
-    FlightTimeInfo2: "Всего: 4ч 15 м",
+    FlightTimeInfo2: " 4ч 15 м",
     TimeInfo4: "17:35",
     CityInfo4: "Москва",
     DateInfo4: "3 мар 2018, Сб",
@@ -784,12 +1222,252 @@ const FindTickets = styled.p`
   line-height: 23px;
   color: #fff;
 `;
+
+//____________________________________Filter PART
+
+const FilterBox = styled.div`
+  padding-top: 56px;
+`;
+const BlockWithCheckBox = styled.div`
+  margin-bottom: 1px;
+  background: #ffffff;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+`;
+const BlockWithSwipe = styled.div`
+  margin-bottom: 1px;
+  background: #ffffff;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-radius: 0px;
+  margin-bottom: 1px;
+  padding-bottom: 24px;
+`;
+const EmptyBlock = styled.div`
+  margin-bottom: 1px;
+  background: #ffffff;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-radius: 0px;
+  padding-bottom: 16px;
+`;
+const FilterTitleBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #5b5b5c;
+  padding-left: 16px;
+
+  text-transform: uppercase;
+`;
+const FilterTitle = styled.div`
+  display: flex;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #5b5b5c;
+  padding-top: 16px;
+  text-transform: uppercase;
+`;
+const ShapeFilter = styled.img`
+  padding-right: 6px;
+  transform: rotate(-90deg);
+  margin-bottom: 2px;
+  padding-right: 0px;
+  margin-right: 6px;
+`;
+const ResetBlock = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding-left: 16px;
+
+  background: #fff;
+  padding-bottom: 16px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  color: #00bde4;
+`;
+
+const ResetTitle = styled.div`
+  padding-top: 18px;
+`;
+
+const DeleteFilter = styled.div`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #5b5b5c;
+  /* padding-left: 16px; */
+  padding-top: 16px;
+  text-transform: uppercase;
+`;
+const CrossFilter = styled.img`
+  padding-right: 16px;
+  padding-top: 2px;
+`;
+
+const Checkboxes = styled.div`
+  padding: 26px 0px 6px 26px;
+`;
+
+const CheckboxContainer = styled.div`
+  padding-bottom: 15px;
+  padding-left: 16px;
+  padding-right: 16px;
+`;
+
+const CheckboxInfo = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin-left: -10px;
+  margin-top: -6px;
+  margin-right: 60px;
+  padding-bottom: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  font-size: 11px;
+  color: #5b5b5c;
+`;
+
+const CheckboxCategory = styled.div`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 18px;
+  font-size: 12px;
+  padding-left: 16px;
+  color: #323333;
+  margin-left: -23px;
+  padding-bottom: 17px;
+`;
+
+const LabelContent = styled.label`
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  font-size: 12px;
+  color: #4a4a4a;
+  user-select: none;
+`;
+const InputCheck = styled.input`
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  &:checked ~ span:after {
+    display: block;
+  }
+  &:checked ~ span {
+    background: #e1f8ff;
+    border: 1px solid #00ace2;
+  }
+`;
+const CheckContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const CheckPrice = styled.div`
+  color: #a0b0b9;
+`;
+const CheckSpan = styled.span`
+  margin-left: 16px;
+  position: absolute;
+  top: 0;
+  left: -40px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border: 1px solid #a0b0b9;
+  box-sizing: border-box;
+  border-radius: 4px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 3px;
+    width: 3px;
+    height: 6px;
+    border-bottom: 2px solid #00ace2;
+    border-right: 2px solid #00ace2;
+    transform: rotate(45deg);
+  }
+  &:checked ~ span {
+    background-color: #e1f8ff;
+    border: 1px solid #00ace2;
+  }
+`;
+
+const NameOfFlights = styled.div`
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 18px;
+  font-size: 12px;
+  color: #323333;
+  padding-top: 26px;
+  margin-left: 16px;
+  margin-right: 16px;
+`;
+const BlackPlaneBoxImg = styled.img`
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: -3px;
+`;
+const SliderBox = styled.div`
+  margin-left: 16px;
+  margin-right: 16px;
+`;
+const TimeBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  font-size: 12px;
+  color: #323333;
+`;
+
+const DepartureArrival = styled.div`
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  font-size: 12px;
+  color: #323333;
+  margin-top: 15px;
+`;
+const TimeStart = styled.div``;
+const TimeFinish = styled.div``;
+const FilterQuantity = styled.span`
+  color: #a0b0b9;
+  padding-left: 8px;
+`;
+
 //_____________________________________TICKETS PART
 
 const TicketsPart = styled.div`
   background-color: #eaeaea;
-  height: 2400px;
-  ${"" /* ; DELET AFTER!!!!!!!!________________________ */};
 `;
 
 const TicketsBox = styled.div`
@@ -805,13 +1483,14 @@ const TicketBuyCol = styled.div`
   display: flex;
   background-color: #fff;
   flex-direction: column;
+  border-radius: 4px 0px 0px 4px;
 `;
 const BagsInfo = styled.div`
   display: flex;
   flex-direction: column;
 `;
 const BigBag = styled.div`
-  padding: 10px 0px 15px 0px;
+  padding: 10px 0px 0px 0px;
   display: flex;
   display: none;
   ${props =>
@@ -900,7 +1579,8 @@ const BagWeightBig1 = styled.div`
   font-size: 10px;
   line-height: 12px;
   text-align: center;
-  left: 7px;
+  right: 0px;
+  left: 0px;
   font-weight: Bold;
 `;
 const BagWeightBig2 = styled.div`
@@ -908,8 +1588,11 @@ const BagWeightBig2 = styled.div`
   font-size: 10px;
   line-height: 12px;
   top: 7px;
-  left: 3px;
+  right: 0px;
+  left: 0px;
+  text-align: center;
   font-weight: Bold;
+  display: block;
   ${props =>
     props.noBag === true &&
     css`
@@ -921,6 +1604,8 @@ const BagWeight1 = styled.div`
   letter-spacing: -0.4px;
   position: absolute;
   top: 8px;
+  right: 0px;
+  left: 0px;
   font-size: 10px;
   line-height: 12px;
   text-align: center;
@@ -930,8 +1615,11 @@ const BagWeight2 = styled.div`
   position: absolute;
   font-size: 10px;
   line-height: 12px;
+  text-align: center;
   top: 7px;
   font-weight: Bold;
+  right: 0px;
+  left: 0px;
   ${props =>
     props.noBag === true &&
     css`
@@ -951,8 +1639,40 @@ const Cross = styled.img`
     `};
 `;
 
+const CrossRed = styled.img`
+  position: absolute;
+  left: auto;
+  top: 9px;
+  right: 5px;
+  display: none;
+  ${props =>
+    props.noBag === true &&
+    css`
+      display: block;
+    `};
+`;
+
 const BagImg1 = styled.img``;
+
+const BagImg2Red = styled.img`
+  display: none;
+  ${props =>
+    props.noBag === true &&
+    css`
+      display: block;
+    `};
+`;
+
 const BagImg2 = styled.img``;
+const BagImg2Big = styled.img`
+  display: block;
+  ${props =>
+    props.noBag === true &&
+    css`
+      display: none;
+    `};
+`;
+
 const BagText1 = styled.span`
   padding-bottom: 7px;
   font-size: 10px;
@@ -969,6 +1689,22 @@ const BagText2 = styled.span`
   font-size: 10px;
   text-align: center;
   padding-top: 6px;
+`;
+
+const LeftTickets = styled.div`
+  font-style: normal;
+  font-weight: 500;
+  line-height: 15px;
+  font-size: 10px;
+  text-align: center;
+  color: #66d295;
+  display: block;
+  line-height: 18px;
+  font-size: 12px;
+  text-align: center;
+  color: #ff654e;
+  margin-top: 8px;
+  margin-bottom: -9px;
 `;
 
 const BuyButton = styled.div`
@@ -1138,6 +1874,7 @@ const TicketOpener = styled.div`
   align-items: center;
   background-color: #edf5f7;
   padding: 0px 5px 0px 5px;
+  border-radius: 0px 4px 4px 0px;
 `;
 const SwipeDown = styled.img``;
 const Time = styled.div`
@@ -1182,6 +1919,7 @@ const ButtonAllTickets = styled.div`
   margin-bottom: 40px;
   padding-left: 25px;
   padding-right: 25px;
+  margin-bottom: 40px;
 `;
 
 export default Main;
