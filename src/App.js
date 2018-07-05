@@ -104,23 +104,21 @@ function Main() {
             <div className="col-xl-7">
               <TicketsBox>
                 <Tickets />
-
                 <ButtonAllTickets>ПОКАЗАТЬ ЕЩЕ 10 БИЛЕТОВ!</ButtonAllTickets>
               </TicketsBox>
             </div>
           </div>
         </div>
       </TicketsPart>
-
-      {/* <div className="container">
+      <div className="container">
         <div className="row">
-          <div className="col-xl-12" />
-          <FooterBox>
-
-            <AllInfo></AllInfo>
-          </FooterBox>
+          <div className="col-xl-12">
+            <FooterBox>
+              <FooterCol />
+            </FooterBox>
+          </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
@@ -715,6 +713,26 @@ function Tickets(props) {
   return <div>{Ticket} </div>;
 }
 
+//(FUNCTIONS)_____________________Footer PART
+
+function FooterCol(props) {
+  const FooterCols = FooterContent.map(Footer => (
+    <div>
+      <FootTitle>{Footer.FTitle}</FootTitle>
+      <FootInfo>{Footer.FInfo1}</FootInfo>
+      <FootInfo>{Footer.FInfo2}</FootInfo>
+      <FootInfo>{Footer.FInfo3}</FootInfo>
+      <FootInfo>{Footer.FInfo4}</FootInfo>
+      <FootInfo>{Footer.FInfo5}</FootInfo>
+      <FootInfo>{Footer.FInfo6}</FootInfo>
+      <FootInfo>{Footer.FInfo7}</FootInfo>
+      <FootInfoAll>{Footer.FInfoAll}</FootInfoAll>
+    </div>
+  ));
+
+  return <AllInfo> {FooterCols} </AllInfo>;
+}
+
 //(CONSTS)_____________________________________TICKETS PART
 
 const TicketContent = [
@@ -1022,6 +1040,78 @@ const TicketContent = [
   }
 ];
 
+//(CONSTS)_____________________________________FOOTER PART
+
+const FooterContent = [
+  {
+    FTitle: "Страны",
+    FInfo1: "Россия",
+    FInfo2: "Таиланд",
+    FInfo3: "Черногория",
+    FInfo4: "Кипр",
+    FInfo5: "Болгария",
+    FInfo6: "Грузия",
+    FInfo7: null,
+    FInfoAll: "Все страны →"
+  },
+  {
+    FTitle: "Города",
+    FInfo1: "Москва",
+    FInfo2: "Санкт-Петербург",
+    FInfo3: "Симферополь",
+    FInfo4: "Адлер",
+    FInfo5: "Екатеринбург",
+    FInfo6: "Лондон",
+    FInfo7: null,
+    FInfoAll: "Все города →"
+  },
+
+  {
+    FTitle: "Авиакомпании",
+    FInfo1: "Air Berlin",
+    FInfo2: "Air France",
+    FInfo3: "Air Baltic",
+    FInfo4: "Emirates",
+    FInfo5: "Alitalia",
+    FInfo6: "KLM",
+    FInfo7: null,
+    FInfoAll: "Все авиакомпании →"
+  },
+  {
+    FTitle: "Аэропорты",
+    FInfo1: "Шереметьево",
+    FInfo2: "Курумоч",
+    FInfo3: "Домодедово",
+    FInfo4: "Толмачево",
+    FInfo5: "Владивосток",
+    FInfo6: "Гамбург",
+    FInfo7: null,
+    FInfoAll: "Все аэропорты →"
+  },
+  {
+    FTitle: "Направления",
+    FInfo1: "MOW – SIP",
+    FInfo2: "MOW – AER",
+    FInfo3: "MOW – TIV",
+    FInfo4: "MOW – MRV",
+    FInfo5: "LED – MOW",
+    FInfo6: "MOW – BKK",
+    FInfo7: null,
+    FInfoAll: null
+  },
+  {
+    FTitle: "Сервисы",
+    FInfo1: "Горящие авиабилеты",
+    FInfo2: "Календарь низких цен",
+    FInfo3: "Карта низких цен",
+    FInfo4: "Спецпредложения",
+    FInfo5: "Таблица цен",
+    FInfo6: "Блог",
+    FInfo7: "Помощь",
+    FInfoAll: null
+  }
+];
+
 //(STYLED)__________________SEARCH PART
 
 const SearchPart = styled.div`
@@ -1170,13 +1260,13 @@ const CalendarThere = styled.div`
   margin: 0px 1px;
   display: flex;
   width: 50%;
-  box-sizing: border-box;
 `;
 const There = styled.input`
   color: #a0b0b9;
   padding: 18px 0px 18px 16px;
   border-color: transparent;
   width: 100%;
+  box-sizing: border-box;
 `;
 const CalendarBack = styled.div`
   z-index: 1;
@@ -1193,6 +1283,7 @@ const Back = styled.input`
   padding: 18px 0px 18px 16px;
   border-color: transparent;
   width: 100%;
+  box-sizing: border-box;
 `;
 
 const TypeOfTickets = styled.div`
@@ -1935,6 +2026,31 @@ const ButtonAllTickets = styled.div`
   padding-left: 3px;
   padding-right: 3px;
   margin-bottom: 40px;
+`;
+
+//(STYLED)__________________FOOTER PART
+const FooterBox = styled.div`
+  padding-top: 45px;
+`;
+const AllInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  line-height: 16px;
+  font-size: 12px;
+`;
+const FootTitle = styled.p`
+  color: #4a4a4a;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 20px;
+`;
+const FootInfo = styled.p`
+  font-weight: Regular;
+  color: #5b5b5;
+`;
+const FootInfoAll = styled.p`
+  font-weight: 600;
+  margin-top: 16px;
 `;
 
 export default Main;
