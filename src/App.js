@@ -8,37 +8,49 @@ import { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
 import "./Range.css";
 
-import logo from "./logo.svg";
+import logo from "./img/logo.svg";
 
-import arrow from "./Arrow.svg";
-import calendar from "./calendar.svg";
-import shape from "./shape.svg";
-import ShapeDown from "./ShapeDown.svg";
-import Rectangle from "./Rectangle-169.svg";
-import BlackPlane from "./BlackPlane.svg";
+import arrow from "./img/Arrow.svg";
+import calendar from "./img/calendar.svg";
+import shape from "./img/shape.svg";
+import ShapeDown from "./img/ShapeDown.svg";
+import Rectangle from "./img/Rectangle-169.svg";
+import BlackPlane from "./img/BlackPlane.svg";
 
-import ImgBag1 from "./ImgBag1.svg";
-import ImgBag2 from "./ImgBag2.svg";
-import ImgBag2Red from "./ImgBag2Red.svg";
-import ImgCross from "./ImgCross.svg";
-import CircleCross from "./CircleCross.svg";
-import ImgCrossRed from "./ImgCrossRed.svg";
+import ImgBag1 from "./img/ImgBag1.svg";
+import ImgBag2 from "./img/ImgBag2.svg";
+import ImgBag2Red from "./img/ImgBag2Red.svg";
+import ImgCross from "./img/ImgCross.svg";
+import CircleCross from "./img/CircleCross.svg";
+import ImgCrossRed from "./img/ImgCrossRed.svg";
 
-import ImgTakeoff from "./ImgTakeoff.svg";
-import ImgLanding from "./ImgLanding.svg";
-import ButtonBackImg from "./ButtonBack.svg";
-import PinButton from "./FixButton.svg";
-import ImgCircle from "./ImgCircle.svg";
-import ImgRoutLine from "./ImgRoutLine.svg";
-import imgRus from "./imgRus.svg";
-import ImgNorwind from "./imgNorwind.svg";
-import ImgNorwindAir from "./imgNorwindAir.svg";
-import ImgRed from "./imgRed.svg";
-import RedMin from "./red.min.svg";
-import RusMin from "./rus.min.svg";
-import ImgFly from "./imgFly.svg";
-import AirLineMin from "./airLine.min.svg";
-import DottedLineImg from "./dotted.svg";
+import ImgTakeoff from "./img/ImgTakeoff.svg";
+import ImgLanding from "./img/ImgLanding.svg";
+import ButtonBackImg from "./img/ButtonBack.svg";
+import PinButton from "./img/FixButton.svg";
+import ImgCircle from "./img/ImgCircle.svg";
+import ImgRoutLine from "./img/ImgRoutLine.svg";
+import imgRus from "./img/imgRus.svg";
+import ImgNorwind from "./img/imgNorwind.svg";
+import ImgNorwindAir from "./img/imgNorwindAir.svg";
+import ImgRed from "./img/imgRed.svg";
+import RedMin from "./img/red.min.svg";
+import RusMin from "./img/rus.min.svg";
+import ImgFly from "./img/imgFly.svg";
+import AirLineMin from "./img/airLine.min.svg";
+import DottedLineImg from "./img/dotted.svg";
+
+import vk from "./img/vk.svg";
+import inst from "./img/inst.svg";
+import viber from "./img/viber.svg";
+import fb from "./img/fb.svg";
+import twit from "./img/twit.svg";
+import swipeup from "./img/SwipeUp.svg";
+
+import apple from "./img/apple.svg";
+import android from "./img/android.svg";
+import windows from "./img/windows.svg";
+import line from "./img/line.svg";
 
 function Main() {
   return (
@@ -730,7 +742,59 @@ function FooterCol(props) {
     </div>
   ));
 
-  return <AllInfo> {FooterCols} </AllInfo>;
+  return (
+    <div>
+      <AllInfo>
+        {FooterCols}
+        <SwipeUp src={swipeup} />
+      </AllInfo>
+      <LineBox>
+        <BottonLine src={line} />
+      </LineBox>
+
+      <div className="row">
+        <div className="col-xl-7 col-md  col-sm  col-xs col-lg-12 ">
+          {AboutCompany}
+          {SocialRef}
+          <Hotel>Поиск и бронирование отелей</Hotel>
+        </div>
+
+        <div className="col-xl-5 col-md col-lg  col-sm-12">
+          <LinksMobile>
+            <Cover>
+              <PhoneIcon href="#">
+                <img src={apple} />
+              </PhoneIcon>
+              <PhoneIcon>
+                <img src={android} />
+              </PhoneIcon>
+              <PhoneIcon>
+                <img src={windows} />
+              </PhoneIcon>
+            </Cover>
+            <CheapestTickets>
+              © 2007–2018, Aviasales — дешевые авиабилеты
+            </CheapestTickets>
+          </LinksMobile>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CompanyLinks1(props) {
+  const companylink1 = links.map(link => <ListsLinks>{link.name}</ListsLinks>);
+  return <ListLinks>{companylink1}</ListLinks>;
+}
+
+function CompanyLinks2(props) {
+  const companylink2 = sociallinks.map(link => (
+    <ListsLinks2>
+      <FooterSocialIcon src={link.img} />
+      {link.name}
+    </ListsLinks2>
+  ));
+  return <ListLinks>{companylink2}</ListLinks>;
 }
 
 //(CONSTS)_____________________________________TICKETS PART
@@ -1110,6 +1174,26 @@ const FooterContent = [
     FInfo7: "Помощь",
     FInfoAll: null
   }
+];
+
+const AboutCompany = <CompanyLinks1 links={links} />;
+const SocialRef = <CompanyLinks2 links={sociallinks} />;
+
+const links = [
+  { name: "О компании" },
+  { name: "Партнёрская программа" },
+  { name: "Реклама" },
+  { name: "Вакансии" },
+  { name: "Помощь" },
+  { name: "Правила" },
+  { name: "White Label авиабилеты" }
+];
+const sociallinks = [
+  { name: "Вконтакте", img: vk },
+  { name: "Фейсбук", img: fb },
+  { name: "Инстаграм", img: inst },
+  { name: "Твиттер", img: twit },
+  { name: "Вайбер", img: viber }
 ];
 
 //(STYLED)__________________SEARCH PART
@@ -2031,6 +2115,7 @@ const ButtonAllTickets = styled.div`
 //(STYLED)__________________FOOTER PART
 const FooterBox = styled.div`
   padding-top: 45px;
+  position: relative;
 `;
 const AllInfo = styled.div`
   display: flex;
@@ -2051,6 +2136,102 @@ const FootInfo = styled.p`
 const FootInfoAll = styled.p`
   font-weight: 600;
   margin-top: 16px;
+`;
+
+const ListLinks = styled.ul`
+  display: flex;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 16px;
+  font-size: 12px;
+  margin-top: 17px;
+  color: #5b5b5c;
+  padding-left: 0px;
+`;
+
+const ListsLinks = styled.li`
+  list-style-type: none;
+  margin-right: 10px;
+  color: #5b5b5c;
+  text-decoration: none;
+`;
+
+const ListsLinks2 = styled.li`
+  list-style-type: none;
+  margin-right: 26px;
+  color: #5b5b5c;
+  text-decoration: none;
+`;
+
+const PhoneIcon = styled.a`
+  margin: 0px 10px;
+`;
+
+const Cover = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const LinksMobile = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 17px;
+  flex-direction: column;
+`;
+
+const Hotel = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-style: normal;
+  font-weight: normal;
+  margin-top: 20px;
+  color: #5b5b5c;
+  margin-bottom: 43px;
+  line-height: 16px;
+  font-size: 12px;
+`;
+
+const CheapestTickets = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 16px;
+  margin-top: 20px;
+  color: #5b5b5c;
+  margin-bottom: 43px;
+  font-size: 12px;
+`;
+
+const FooterSocialIcon = styled.img`
+  padding-right: 5px;
+`;
+
+const SearchHotels = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 16px;
+  margin-top: 20px;
+  color: #5b5b5c;
+  margin-bottom: 43px;
+  font-size: 12px;
+`;
+
+const LineBox = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 29px 0px 38px 0px;
+  width: 100%;
+`;
+
+const BottonLine = styled.img``;
+
+const SwipeUp = styled.img`
+  position: absolute;
+  top: 240px;
+  right: -60px;
 `;
 
 export default Main;
